@@ -1,17 +1,22 @@
 <template>
   <div id="app">
+    <Header/>
     <HelloWorld msg="Welcome to Your Vue.js App"/> {{count}}
+    <router-view/>
+
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header.vue'
 import { mapGetters } from 'vuex';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    Header,
   },
   computed: {
     ...mapGetters(['count'])
