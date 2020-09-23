@@ -1,33 +1,37 @@
 <template>
   <div id="app">
     <Header />
-
+    <!-- <MenuToggler/> -->
     <div class="container">
       <aside id="menu" class="side-menu">
-        aside
+        <Checkbox/>
+        <Checkbox/>
+        <Checkbox/>
       </aside>
 
-      <main>Main</main>
+      <main>Masssin</main>
     </div>
-    <router-view /> 
+    <router-view />
   </div>
 </template>
 
 <script>
 import Header from "./components/Header.vue";
+import Checkbox from "./components/Checkbox/Checkbox.vue";
+// import MenuToggler from "./components/Buttons/MenuToggler.vue";
 import { mapGetters } from "vuex";
 
 export default {
   name: "App",
   components: {
     Header,
+    Checkbox,
+    // MenuToggler,
   },
   computed: {
     ...mapGetters(["count"]),
   },
-  mounted() {
-    
-  },
+  mounted() {},
 };
 </script>
 
@@ -35,33 +39,26 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
 @import url("./assets/css/reset.css");
 
-body{
+
+body {
   background: $bg;
 }
 .container {
-  width: 100vw;
+  width: calc(100vw - 2rem);
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
+  padding: 0 1rem;
 
   @media (min-width: 960px) {
     width: 960px;
+    padding: 0;
   }
 }
 
 main {
   flex-grow: 2;
   flex-basis: 35rem;
-  background: red;
-}
-
-button {
-  display: block;
-  float: right;
-
-  @media (min-width: 960px) {
-    display: none;
-  }
 }
 
 aside {
@@ -75,7 +72,6 @@ aside {
   height: 100vh;
   left: -200vw;
   visiblity: hidden;
-  background: salmon;
   transition: left 0.5s, visibility 1s;
 
   &.open {
@@ -92,5 +88,4 @@ aside {
     visibility: visible;
   }
 }
-
 </style>
