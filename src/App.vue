@@ -4,7 +4,9 @@
     <!-- <MenuToggler/> -->
     <div class="container">
       <aside id="menu" class="side-menu">
-        <FilterList/>
+        <FilterList
+          
+        />
         
       </aside>
 
@@ -20,17 +22,25 @@ import FilterList from "./components/Carts/FilterList.vue";
 // import MenuToggler from "./components/Buttons/MenuToggler.vue";
 import { mapGetters } from "vuex";
 
+
 export default {
   name: "App",
   components: {
     Header,
     FilterList,
-    // MenuToggler,
   },
   computed: {
     ...mapGetters(["count"]),
   },
-  mounted() {},
+  mounted() {
+    
+    import("./results.js").then(module => {
+      this.$store.dispatch('INIT_FLIGHTS', module.default.flights)
+      this.$store.dispatch('INIT_AIRLINERS', module.default.airlines)
+    })
+
+    
+  },
 };
 </script>
 
