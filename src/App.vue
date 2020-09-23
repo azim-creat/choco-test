@@ -3,22 +3,15 @@
     <Header />
 
     <div class="container">
-      <main>
-        Main
-      </main>
-      <aside>
-        Aside
-        <div id="menu" class="side-menu">
-          Menu
-          <button id="close-button">Close Menu</button>
-
-        </div>
+      <aside id="menu" class="side-menu">
+        aside
       </aside>
-    </div>
 
+      <main>Main</main>
+    </div>
+    <!-- 
     <router-link to="/HellowWord">HellowWord</router-link>
-    <router-view />
-    <button>hh</button>
+    <router-view /> -->
   </div>
 </template>
 
@@ -35,11 +28,6 @@ export default {
     ...mapGetters(["count"]),
   },
   mounted() {
-    var close = document.getElementById("close-button");
-    var menu = document.getElementById("menu");
-    close.addEventListener("click", () => {
-      menu.classList.remove("open");
-    });
     
   },
 };
@@ -47,7 +35,8 @@ export default {
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
-/*
+
+body,
 body * {
   animation: none;
   animation-delay: 0;
@@ -120,7 +109,6 @@ body * {
   counter-reset: none;
   cursor: auto;
   direction: ltr;
-  display: inline;
   empty-cells: show;
   float: none;
   font: normal;
@@ -198,32 +186,12 @@ body * {
   z-index: auto;
   all: initial;
   all: unset;
-}
-*/
-
-// #app {
-//   all: initial;
-//   * {
-//     all: unset;
-//     font-family: "Open Sans", sans-serif;
-//   }
-// }
-
-body {
-  margin: 0;
-  padding: 0;
-  background: lightgrey;
-}
-
-* {
-  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
 }
 
 .container {
-  width: 100%;
-  height: 800px;
+  width: 100vw;
   margin: 0 auto;
-  border: 1px solid black;
   display: flex;
   flex-wrap: wrap;
 
@@ -234,8 +202,8 @@ body {
 
 main {
   flex-grow: 2;
-  flex-basis: 40rem;
-  border-right: 1px solid black;
+  flex-basis: 35rem;
+  background: red;
 }
 
 button {
@@ -256,7 +224,6 @@ aside {
   position: fixed;
   width: 100vw;
   height: 100vh;
-  top: 0;
   left: -200vw;
   visiblity: hidden;
   background: salmon;
@@ -276,4 +243,5 @@ aside {
     visibility: visible;
   }
 }
+
 </style>
