@@ -37,6 +37,7 @@ export default {
   height: 56px;
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
   @include shadow;
 
   &__content{

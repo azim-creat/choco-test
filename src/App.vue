@@ -4,9 +4,8 @@
     <!-- <MenuToggler/> -->
     <div class="container">
       <aside id="menu" class="side-menu">
-        <Checkbox/>
-        <Checkbox/>
-        <Checkbox/>
+        <FilterList/>
+        
       </aside>
 
       <main>Masssin</main>
@@ -17,7 +16,7 @@
 
 <script>
 import Header from "./components/Header.vue";
-import Checkbox from "./components/Checkbox/Checkbox.vue";
+import FilterList from "./components/Carts/FilterList.vue";
 // import MenuToggler from "./components/Buttons/MenuToggler.vue";
 import { mapGetters } from "vuex";
 
@@ -25,7 +24,7 @@ export default {
   name: "App",
   components: {
     Header,
-    Checkbox,
+    FilterList,
     // MenuToggler,
   },
   computed: {

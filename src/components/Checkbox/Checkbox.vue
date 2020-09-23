@@ -16,7 +16,7 @@ export default {
 
 <style lang="scss">
 .checkbox_item {
-  padding: 14px;
+  padding: 12px;
   display: block;
   position: relative;
   padding-left: 35px;
@@ -61,7 +61,7 @@ export default {
 }
 .checkbox_item:hover input ~ .checkmark:after {
   display: block;
-  left: 3px;
+  left: 4px;
   top: 0px;
   width: 3px;
   height: 6px;
@@ -83,7 +83,7 @@ export default {
 }
 
 .checkbox_item .checkmark:after {
-  left: 3px;
+  left: 4px;
   top: 0px;
   width: 3px;
   height: 6px;
