@@ -1,9 +1,24 @@
 <template>
   <div id="app">
     <Header />
+
+    <div class="container">
+      <main>
+        Main
+      </main>
+      <aside>
+        Aside
+        <div id="menu" class="side-menu">
+          Menu
+          <button id="close-button">Close Menu</button>
+
+        </div>
+      </aside>
+    </div>
+
     <router-link to="/HellowWord">HellowWord</router-link>
     <router-view />
-    <button>hh </button>
+    <button>hh</button>
   </div>
 </template>
 
@@ -19,12 +34,20 @@ export default {
   computed: {
     ...mapGetters(["count"]),
   },
+  mounted() {
+    var close = document.getElementById("close-button");
+    var menu = document.getElementById("menu");
+    close.addEventListener("click", () => {
+      menu.classList.remove("open");
+    });
+    
+  },
 };
 </script>
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
-
+/*
 body * {
   animation: none;
   animation-delay: 0;
@@ -144,7 +167,6 @@ body * {
   perspective: none;
   perspective-origin: 50% 50%;
   position: static;
-  /* May need to alter quotes for different locales (e.g fr) */
   quotes: "\201C""\201D""\2018""\2019";
   right: auto;
   tab-size: 8;
@@ -174,17 +196,84 @@ body * {
   width: auto;
   word-spacing: normal;
   z-index: auto;
-  /* basic modern patch */
   all: initial;
   all: unset;
 }
+*/
 
-#app {
-  all: initial;
-  * {
-    all: unset;
-    font-family: "Open Sans", sans-serif;
+// #app {
+//   all: initial;
+//   * {
+//     all: unset;
+//     font-family: "Open Sans", sans-serif;
+//   }
+// }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: lightgrey;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  height: 800px;
+  margin: 0 auto;
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (min-width: 960px) {
+    width: 960px;
   }
 }
 
+main {
+  flex-grow: 2;
+  flex-basis: 40rem;
+  border-right: 1px solid black;
+}
+
+button {
+  display: block;
+  float: right;
+
+  @media (min-width: 960px) {
+    display: none;
+  }
+}
+
+aside {
+  flex-grow: 1;
+  flex-basis: 18rem;
+}
+
+.side-menu {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: -200vw;
+  visiblity: hidden;
+  background: salmon;
+  transition: left 0.5s, visibility 1s;
+
+  &.open {
+    visibility: visible;
+    left: 0;
+  }
+
+  @media (min-width: 960px) {
+    position: static;
+    height: 350px;
+    width: auto;
+    top: unset;
+    left: unset;
+    visibility: visible;
+  }
+}
 </style>
