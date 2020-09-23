@@ -1,7 +1,9 @@
 <template>
   <div class="header">
     <div class="container">
-      <h1>Header</h1>
+      <router-link to="/">
+        <img :src="require('@/assets/logo.png')" alt="">
+      </router-link>
       <div id="nav-icon2" @click="toggleMenu">
         <span></span>
         <span></span>
@@ -34,9 +36,10 @@ export default {
 
 
 <style lang="scss">
+
 .header {
-  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
-  background: cyan;
+  background: #fff;
+  @include shadow;
 }
 
 #nav-icon1,
