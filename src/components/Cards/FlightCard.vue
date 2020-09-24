@@ -104,6 +104,7 @@ export default {
         color: $black;
       }
     }
+    
   }
   &__secondary {
     display: flex;
@@ -115,12 +116,37 @@ export default {
   }
 }
 
+@media (max-width: 740px) {
+  .flight_cart{
+    flex-direction: column;
+    align-items: flex-start;
+    &__main {
+      padding: 15px;
+      padding-left: 30px;
+      width: calc(100%  - 45px);
+    }
+    &__secondary {
+      padding: 15px;
+      padding-left: 30px;
+      width: calc(100%  - 45px);
+
+    }
+  }
+}
+
 .flight_cart__main__header {
   display: flex;
   justify-content: space-between;
   flex: 1;
   align-items: center;
 }
+@media (max-width: 880px) {
+  .flight_cart__main__header{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 
 .flight_cart__main__footer {
   flex: 0;
@@ -132,21 +158,30 @@ export default {
   .date__date{
     color: $black;
     font-size: 14px;
+    span{
+      color: $red;
+      font-size: 10px;
+      font-weight: 400;
+    }
   }
   .date__time{
     font-size: 24px;
     color: $black;
     font-weight: bold;
+    padding-top: 5px;
   }
 }
 .flight_cart__main__header__fligt_info {
     display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
 }
 
 .flight_cart__main__header__way {
     display: flex;
     flex-direction: column;
-    padding: 0 10px;
+    padding: 0 30px;
 }
 .flight_cart__main__header__way__header {
     display: flex;
@@ -178,11 +213,11 @@ export default {
       transform: translateY(-50%);
     }
   span{
-    width: 4px;
-    height: 4px;
+    width: 5px;
+    height: 5px;
     border: 1px solid $light_gray;
     display: block;
-    border-radius: 2px;
+    border-radius: 4px;
     background: #fff;
     z-index: 1;
     
@@ -211,18 +246,22 @@ export default {
     font-weight: bold;
     font-size: 18px;
     margin: 10px 0;
+    cursor: pointer;
+    &:hover{
+      background: $green_hover;
+    }
 }
 
 .link_btn {
     display: inline;
     font-size: 12px;
     color: #3F51B5;
-    border-bottom: 2px #3F51B5 dashed;
+    border-bottom: 1px #3F51B5 dashed;
     cursor: pointer;
-    margin-right: 15px;
+    margin-right: 20px;
     &:hover{
       opacity: .8;
-      border-bottom: 2px #3F51B5 solid;
+      border-bottom: 1px #3F51B5 solid;
     }
 }
 .un_refundable{
@@ -240,7 +279,7 @@ export default {
 .flight_cart__secondary__footer {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin-top: 10px;
 }
 
@@ -252,11 +291,18 @@ export default {
     border-radius: 4px;
     padding: 5px 10px;
     line-height: 1;
+    cursor: pointer;
+    white-space: nowrap;
+    &:hover{
+      background: $secondaru_btn_bg_color_hover;
+    }
 }
 
 .flight_cart__secondary__footer__info{
-    color: $black;
+  color: $black;
   font-size: 12px;
+  white-space: nowrap;
+  margin-right: 5px;
 }
 .flight_cart__info_title {
     font-size: 12px;

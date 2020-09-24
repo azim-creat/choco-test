@@ -70,7 +70,7 @@ body {
   background: $bg;
 }
 .container {
-  width: calc(100vw - 2rem);
+  width: calc(100vw - 4rem);
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -81,6 +81,15 @@ body {
     padding: 0;
   }
 }
+
+@media (max-width: 1140px) {
+  .container {
+    width: calc(100vw - 2rem);
+    padding: 0 1rem;
+  }
+}
+
+
 
 main {
   flex-grow: 3;
