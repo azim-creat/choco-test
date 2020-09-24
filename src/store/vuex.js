@@ -4,19 +4,19 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
-    count: 0,
     airlines: {},
     flights: [],
+    options: ["Только прямые", "Только с багажом", "Только возвратные"]
   },
   getters: {
-    count: state => {
-      return state.count;
-    },
     airlines: state => {
-      return state.count;
+      return state.airlines;
     },
     flights: state => {
-      return state.count;
+      return state.flights;
+    },
+    options: state => {
+      return state.options;
     }
   },
   mutations: {

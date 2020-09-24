@@ -1,6 +1,6 @@
 <template>
   <label class="checkbox_item">
-    One
+    {{title}}
     <input type="checkbox" checked="checked" />
     <span class="checkmark"></span>
   </label>
@@ -9,7 +9,9 @@
 <script>
 export default {
   name: "Checkbox",
-
+  props:{
+    title: String,
+  },
   methods: {},
 };
 </script>

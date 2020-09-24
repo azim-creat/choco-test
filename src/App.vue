@@ -5,12 +5,21 @@
     <div class="container">
       <aside id="menu" class="side-menu">
         <FilterList
-          
+          title="Опции тарифа"
+          :list="options"
+        />
+        <FilterList
+          title="Авиакомпании"
+          :list="airlines"
         />
         
       </aside>
 
-      <main>Masssin</main>
+      <main>
+        <FlightCard
+          v-for="(flight, flight_index) in flights" :key="flight_index"
+        />
+      </main>
     </div>
     <router-view />
   </div>
@@ -18,7 +27,8 @@
 
 <script>
 import Header from "./components/Header.vue";
-import FilterList from "./components/Carts/FilterList.vue";
+import FilterList from "./components/Cards/FilterList.vue";
+import FlightCard from "./components/Cards/FlightCard.vue";
 // import MenuToggler from "./components/Buttons/MenuToggler.vue";
 import { mapGetters } from "vuex";
 
@@ -28,9 +38,10 @@ export default {
   components: {
     Header,
     FilterList,
+    FlightCard,
   },
   computed: {
-    ...mapGetters(["count"]),
+    ...mapGetters(["airlines", "flights", "options"]),
   },
   mounted() {
     
@@ -95,6 +106,7 @@ aside {
     top: unset;
     left: unset;
     visibility: visible;
+    margin-right: 20px;
   }
 }
 </style>
