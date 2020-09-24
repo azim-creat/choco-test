@@ -36,7 +36,12 @@
               <span></span>
             </div>
             <div class="flight_cart__main__header__way__points__name">
-              <span>через Шымкент, 1 ч 50 м</span>
+              <div
+                v-for="(segment, segment_index) in flight.itineraries[0][0].segments"
+                :key="segment_index"
+              >
+                через Шымкент, 1 ч 50 м
+              </div>
             </div>
           </div>
           <div

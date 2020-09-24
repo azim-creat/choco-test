@@ -33,7 +33,7 @@ export const store = new Vuex.Store({
       }
       
       function checkOption(flight) {
-        let is_not_segmented = flight.itineraries[0][0].segments.length > 1;
+        let is_not_segmented = flight.itineraries[0][0].segments.length === 1;
         let is_refundable = flight.refundable;
         let is_bagage = flight.services['0PC'] === undefined || flight.services['20KG']  || flight.services['1PC'] 
         
