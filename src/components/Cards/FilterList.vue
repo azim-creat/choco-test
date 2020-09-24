@@ -5,6 +5,7 @@
         {{ title }}
       </span>
       <svg
+        @click="updateFilter"
         width="20"
         height="20"
         viewBox="0 0 20 20"
@@ -20,7 +21,7 @@
     </div>
     <Checkbox
       v-for="(list_item, list_item_index) in list"
-      :key="list_item_index"
+      :key="list_item_index + randKey"
       :title="list_item"
       :checkbox_key="list_item_index"
       :change_callback="changeFilterOption"
@@ -43,12 +44,17 @@ export default {
   data() {
     return {
       filter_data: {},
+      randKey: 0
     };
   },
   components: {
     Checkbox,
   },
   methods: {
+    updateFilter() {
+      this.$forceUpdate();
+      this.randKey++
+    },
     createDefaultFilter() {
       for (const key in this.list) {
         this.filter_data[key] = this.default_checked;
@@ -57,6 +63,7 @@ export default {
         type_filter: this.filter_key,
         value: this.filter_data,
       });
+
     },
     changeFilterOption(key, val) {
       this.filter_data[key] = val;
@@ -73,6 +80,12 @@ export default {
         value: this.filter_data,
       });
     },
+  },
+  updated() {
+    if (Object.keys(this.list).length > 0) {
+      this.createDefaultFilter();
+    }
+
   },
   mounted() {
     if (Object.keys(this.list).length > 0) {

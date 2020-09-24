@@ -177,10 +177,10 @@ export default {
     getSegmentInfo(segment, index, len){
       if(len === 1) return "прямой рейс"
       if(index === len - 1) return 
-      return `пересадка г.${segment.dest} ${this.getAvaitTimeBeetvinSegment(segment, index, len)}`
+      return `пересадка г.${segment.dest} ${this.getAvaitTimeBeetvinSegment(segment, index)}`
     },
 
-    getAvaitTimeBeetvinSegment(segment, index, len){
+    getAvaitTimeBeetvinSegment(segment, index){
       const segments = this.flight.itineraries[0][0].segments
       const ariv = new Date(segment.arr_time_iso)
       const dep = new Date(segments[index + 1].dep_time_iso)

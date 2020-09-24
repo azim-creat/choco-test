@@ -5,18 +5,20 @@
     <div class="container">
       <aside id="menu" class="side-menu">
         <FilterList
+          :key="randKey1"
           title="Опции тарифа"
           filter_key="options"
           :list="options"
           :default_checked="false"
         />
         <FilterList
+          :key="randKey2"
           title="Авиакомпании"
           filter_key="airlines"
           :list="airlines"
           :default_checked="true"
         />
-        
+           <div class="link_btn " @click="clenFiltres">Сбросить все фильтры</div>
       </aside>
 
       <main>
@@ -49,6 +51,18 @@ export default {
   },
   computed: {
     ...mapGetters(["airlines", "flights", "options"]),
+  },
+  data(){
+    return {
+      randKey1: 0,
+      randKey2: 1,
+    }
+  },
+  methods:{
+    clenFiltres(){
+      this.randKey1++
+      this.randKey2++
+    }
   },
   mounted() {
     
@@ -110,7 +124,7 @@ aside#menu:after {
     content: "";
     position: absolute;
     width: 100vw;
-    height: 100vh;
+    height: 150vh;
     background: whitesmoke;
     z-index: -1;
     top: 10px;
@@ -131,7 +145,9 @@ aside#menu:after {
   left: -200vw;
   visiblity: hidden;
   transition: left 0.5s, visibility 1s;
-
+  .link_btn{
+    margin-left: 10px;
+  }
   
 
   &.open {
