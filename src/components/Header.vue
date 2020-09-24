@@ -16,10 +16,13 @@ export default {
   },
   methods: {
     toggleMenu() {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+      
       const menu = document.getElementById("menu");
       const button = document.getElementById("nav-icon2");
       menu.classList.toggle("open");
       button.classList.toggle("open");
+
     },
   },
   beforeCreate: function () {

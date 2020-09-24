@@ -28,6 +28,7 @@
     </div>
 
     <router-view />
+    
   </div>
 </template>
 
@@ -68,9 +69,12 @@ export default {
 
 body {
   background: $bg;
+  width: calc(100vw - (100vw - 100%));
+  overflow-x: hidden;
+
 }
 .container {
-  width: calc(100vw - 4rem);
+  width: calc(100% - 4rem);
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -84,7 +88,7 @@ body {
 
 @media (max-width: 1140px) {
   .container {
-    width: calc(100vw - 2rem);
+    width: calc(100% - 2rem);
     padding: 0 1rem;
   }
 }
@@ -99,29 +103,53 @@ main {
 aside {
   flex-grow: 1;
   flex-basis: 10rem;
+
 }
+aside#menu:after {
+    display: block;
+    content: "";
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: whitesmoke;
+    z-index: -1;
+    top: 10px;
+}
+@media (min-width: 1140px) {
+  aside#menu:after {
+    display: none
+  }
+    
+  }
+
 
 .side-menu {
   position: fixed;
+  z-index: 2;
   width: 100vw;
   height: 100vh;
   left: -200vw;
   visiblity: hidden;
   transition: left 0.5s, visibility 1s;
 
+  
+
   &.open {
     visibility: visible;
     left: 0;
+    max-height: calc(100vh - 56px);
+    max-width: calc(100vw - (100vw - 100%));
+    overflow-y: scroll;
   }
 
   @media (min-width: 1140px) {
     position: static;
-    height: 350px;
     width: auto;
     top: unset;
     left: unset;
     visibility: visible;
     margin-right: 20px;
+    
   }
 }
 </style>
