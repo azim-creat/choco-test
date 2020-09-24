@@ -60,8 +60,8 @@
         </div>
       </div>
       <div class="flight_cart__main__footer">
-        <div class="link_btn">Детали перелета</div>
-        <div class="link_btn">Условия тарифа</div>
+        <div class="link_btn" @click="myAlert">Детали перелета</div>
+        <div class="link_btn" @click="myAlert">Условия тарифа</div>
         <div class="un_refundable" v-if="!flight.refundable">
           <img
             :src="require('@/assets/images/no_refund.svg')"
@@ -76,12 +76,12 @@
       <div class="flight_cart__price">
         {{ flight.price }} {{ flight.currency }}
       </div>
-      <div class="flight_cart__btn">Выбрать</div>
+      <div class="flight_cart__btn" @click="myAlert">Выбрать</div>
 
       <div class="flight_cart__info_title">Цена за всех пассажирова</div>
       <div class="flight_cart__secondary__footer">
         <div class="flight_cart__secondary__footer__info">{{Object.values(flight.services)[0].value}}</div>
-        <div class="flight_cart__secondary__footer__btn">+ Добавить багаж</div>
+        <div class="flight_cart__secondary__footer__btn" @click="myAlert">+ Добавить багаж</div>
       </div>
     </div>
   </div>
@@ -186,7 +186,9 @@ export default {
       const dep = new Date(segments[index + 1].dep_time_iso)
 
       return this.getTimeLongOfFlight(ariv, dep)
-
+    },
+    myAlert(){
+      alert('Функционал разрабатывается')
     }
   },
 };
