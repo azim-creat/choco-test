@@ -55,7 +55,7 @@
       <div class="flighd_cart__info_title">Цена за всех пассажирова</div>
       <div class="flighd_cart__secondary__footer">
         <div class="flighd_cart__secondary__footer__info">Нет багажа</div>
-        <div class="flighd_cart__secondary__footer__btn">Добавить багаж</div>
+        <div class="flighd_cart__secondary__footer__btn">+ Добавить багаж</div>
       </div>
     </div>
   </div>
@@ -109,7 +109,7 @@ export default {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    flex-basis: 3rem;
+    flex-basis: 5rem;
     background: $card_color_secondary;
     padding: 15px;
   }
@@ -235,6 +235,33 @@ export default {
     height: 15px;
     padding-right: 5px;
   }
+}
+
+.flighd_cart__secondary__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.flighd_cart__secondary__footer__btn {
+    font-weight: 600;
+    font-size: 14px;
+    color: $secondaru_btn_text_color;
+    background: $secondaru_btn_bg_color;
+    border-radius: 4px;
+    padding: 5px 10px;
+    line-height: 1;
+}
+
+.flighd_cart__secondary__footer__info{
+    color: $black;
+  font-size: 12px;
+}
+.flighd_cart__info_title {
+    font-size: 12px;
+    color: $gray;
+    text-align: center;
 }
 
 
