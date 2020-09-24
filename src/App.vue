@@ -22,6 +22,7 @@
       <main>
         <FlightCard
           v-for="(flight, flight_index) in flights" :key="flight_index"
+          :flight="flight"
         />
       </main>
     </div>
@@ -75,20 +76,20 @@ body {
   flex-wrap: wrap;
   padding: 0 1rem;
 
-  @media (min-width: 960px) {
-    width: 960px;
+  @media (min-width: 1140px) {
+    width: 1140px;
     padding: 0;
   }
 }
 
 main {
-  flex-grow: 2;
+  flex-grow: 3;
   flex-basis: 35rem;
 }
 
 aside {
   flex-grow: 1;
-  flex-basis: 18rem;
+  flex-basis: 10rem;
 }
 
 .side-menu {
@@ -104,7 +105,7 @@ aside {
     left: 0;
   }
 
-  @media (min-width: 960px) {
+  @media (min-width: 1140px) {
     position: static;
     height: 350px;
     width: auto;

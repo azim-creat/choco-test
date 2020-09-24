@@ -34,7 +34,7 @@ export default {
   transform: rotate(0deg);
   transition: 0.5s ease-in-out;
   cursor: pointer;
-  @media (min-width: 960px) {
+  @media (min-width: 1140px) {
     display: none;
   }
 }
