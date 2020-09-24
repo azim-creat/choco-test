@@ -26,9 +26,9 @@
           </div>
           <div class="flight_cart__main__header__way">
             <div class="flight_cart__main__header__way__header">
-              <span class="dep_airoport airoport">ALA</span>
+              <span class="dep_airoport airoport">{{getDepAiroport(flight)}}</span>
               <span class="way_long">{{getTimeLongOfFlight(flight.itineraries[0][0].dep_date, flight.itineraries[0][0].arr_date)}}</span>
-              <span class="ariv_airoport airoport">TSE</span>
+              <span class="ariv_airoport airoport">{{getArAiroport(flight)}}</span>
             </div>
             <div class="flight_cart__main__header__way__points">
               <span></span>
@@ -155,8 +155,17 @@ export default {
       let m = Math.floor((diffTime/1000/60/60 - h)*60);
       if(h > 0) h += ' ч'
       if(m > 0) m += ' м'
-      
+
       return `${h} ${m}`;
+    },
+    getDepAiroport(flight){
+      const segments = flight.itineraries[0][0].segments
+      return segments[0].origin_code
+    },
+    getArAiroport(flight){
+      const segments = flight.itineraries[0][0].segments
+      if(segments.length > 2 ) console.log(segments)
+      return segments.slice(-1)[0] .dest_code
     },
   },
 };
