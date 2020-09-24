@@ -31,8 +31,10 @@
               <span class="ariv_airoport airoport">{{getArAiroport(flight)}}</span>
             </div>
             <div class="flight_cart__main__header__way__points">
-              <span></span>
-              <span></span>
+              <span
+              v-for="(segment, segment_index) in flight.itineraries[0][0].segments"
+                :key="segment_index"
+              ></span>
               <span></span>
             </div>
             <div class="flight_cart__main__header__way__points__name">
@@ -40,7 +42,7 @@
                 v-for="(segment, segment_index) in flight.itineraries[0][0].segments"
                 :key="segment_index"
               >
-                через Шымкент, 1 ч 50 м
+                 {{getSegmentInfo(segment, segment_index, flight.itineraries[0][0].segments.length)}}
               </div>
             </div>
           </div>
@@ -78,7 +80,7 @@
 
       <div class="flight_cart__info_title">Цена за всех пассажирова</div>
       <div class="flight_cart__secondary__footer">
-        <div class="flight_cart__secondary__footer__info">Нет багажа</div>
+        <div class="flight_cart__secondary__footer__info">{{Object.values(flight.services)[0].value}}</div>
         <div class="flight_cart__secondary__footer__btn">+ Добавить багаж</div>
       </div>
     </div>
@@ -172,6 +174,20 @@ export default {
       if(segments.length > 2 ) console.log(segments)
       return segments.slice(-1)[0] .dest_code
     },
+    getSegmentInfo(segment, index, len){
+      if(len === 1) return "прямой рейс"
+      if(index === len - 1) return 
+      return `пересадка г.${segment.dest} ${this.getAvaitTimeBeetvinSegment(segment, index, len)}`
+    },
+
+    getAvaitTimeBeetvinSegment(segment, index, len){
+      const segments = this.flight.itineraries[0][0].segments
+      const ariv = new Date(segment.arr_time_iso)
+      const dep = new Date(segments[index + 1].dep_time_iso)
+
+      return this.getTimeLongOfFlight(ariv, dep)
+
+    }
   },
 };
 </script>
@@ -290,6 +306,7 @@ export default {
   .way_long {
     font-size: 12px;
     color: $black;
+    padding: 0 20px;
   }
 }
 .flight_cart__main__header__way__points {
@@ -321,6 +338,9 @@ export default {
 .flight_cart__main__header__way__points__name {
   color: $orange;
   font-size: 12px;
+  div{
+    text-align: center;
+  }
 }
 
 .flight_cart__secondary {
