@@ -1,45 +1,45 @@
 <template>
-  <div class="flighd_cart">
-    <div class="flighd_cart__main">
-      <div class="flighd_cart__main__header">
-        <div class="flighd_cart__main__header__logo">
+  <div class="flight_cart">
+    <div class="flight_cart__main">
+      <div class="flight_cart__main__header">
+        <div class="flight_cart__main__header__logo">
           <img
-            class="flighd_cart__logo"
+            class="flight_cart__logo"
             :src="`https://aviata.kz/static/airline-logos/80x80/${flight.validating_carrier}.png`"
             :alt="`airline logo ${flight.validating_carrier}`"
           />
-          <span class="flighd_cart__airline_name">{{
+          <span class="flight_cart__airline_name">{{
             flight.itineraries[0][0].carrier_name
           }}</span>
         </div>
 
-        <div class="flighd_cart__main__header__fligt_info">
-          <div class="flighd_cart__main__header__date flighd_cart__main__header__dep_date">
+        <div class="flight_cart__main__header__fligt_info">
+          <div class="flight_cart__main__header__date flight_cart__main__header__dep_date">
             <div class="date__date">25 ноя, вс</div>
             <div class="date__time">23:25</div>
           </div>
-          <div class="flighd_cart__main__header__way">
-            <div class="flighd_cart__main__header__way__header">
+          <div class="flight_cart__main__header__way">
+            <div class="flight_cart__main__header__way__header">
               <span class="dep_airoport airoport">ALA</span>
               <span class="way_long">4 ч 20 м</span>
               <span class="ariv_airoport airoport">TSE</span>
             </div>
-            <div class="flighd_cart__main__header__way__points">
+            <div class="flight_cart__main__header__way__points">
               <span></span>
               <span></span>
               <span></span>
             </div>
-            <div class="flighd_cart__main__header__way__points__name">
+            <div class="flight_cart__main__header__way__points__name">
               <span>через Шымкент, 1 ч 50 м</span>
             </div>
           </div>
-          <div class="flighd_cart__main__header__date flighd_cart__main__header__ariv_data">
+          <div class="flight_cart__main__header__date flight_cart__main__header__ariv_data">
             <div class="date__date">25 ноя, вс <span>+1</span></div>
             <div class="date__time">23:25</div>
           </div>
         </div>
       </div>
-      <div class="flighd_cart__main__footer">
+      <div class="flight_cart__main__footer">
         <div class="link_btn">Детали перелета</div>
         <div class="link_btn">Условия тарифа</div>
         <div class="un_refundable" v-if="!flight.refundable">
@@ -48,14 +48,14 @@
         </div>
       </div>
     </div>
-    <div class="flighd_cart__secondary">
-      <div class="flighd_cart__price">{{flight.price}} {{flight.currency}}</div>
-      <div class="flighd_cart__btn">Выбрать</div>
+    <div class="flight_cart__secondary">
+      <div class="flight_cart__price">{{flight.price}} {{flight.currency}}</div>
+      <div class="flight_cart__btn">Выбрать</div>
 
-      <div class="flighd_cart__info_title">Цена за всех пассажирова</div>
-      <div class="flighd_cart__secondary__footer">
-        <div class="flighd_cart__secondary__footer__info">Нет багажа</div>
-        <div class="flighd_cart__secondary__footer__btn">+ Добавить багаж</div>
+      <div class="flight_cart__info_title">Цена за всех пассажирова</div>
+      <div class="flight_cart__secondary__footer">
+        <div class="flight_cart__secondary__footer__info">Нет багажа</div>
+        <div class="flight_cart__secondary__footer__btn">+ Добавить багаж</div>
       </div>
     </div>
   </div>
@@ -77,7 +77,7 @@ export default {
 </script>
 
 <style lang="scss">
-.flighd_cart {
+.flight_cart {
   border-radius: 4px;
   background: $card_color;
   @include card_shadow;
@@ -94,11 +94,11 @@ export default {
     &__header__logo {
       display: flex;
       align-items: center;
-      .flighd_cart__logo {
+      .flight_cart__logo {
         height: 20px;
         margin-right: 10px;
       }
-      .flighd_cart__airline_name {
+      .flight_cart__airline_name {
         font-size: 14px;
         font-weight: bold;
         color: $black;
@@ -115,20 +115,20 @@ export default {
   }
 }
 
-.flighd_cart__main__header {
+.flight_cart__main__header {
   display: flex;
   justify-content: space-between;
   flex: 1;
   align-items: center;
 }
 
-.flighd_cart__main__footer {
+.flight_cart__main__footer {
   flex: 0;
   display: flex;
   align-items: center;
 }
 
-.flighd_cart__main__header__date{
+.flight_cart__main__header__date{
   .date__date{
     color: $black;
     font-size: 14px;
@@ -139,16 +139,16 @@ export default {
     font-weight: bold;
   }
 }
-.flighd_cart__main__header__fligt_info {
+.flight_cart__main__header__fligt_info {
     display: flex;
 }
 
-.flighd_cart__main__header__way {
+.flight_cart__main__header__way {
     display: flex;
     flex-direction: column;
     padding: 0 10px;
 }
-.flighd_cart__main__header__way__header {
+.flight_cart__main__header__way__header {
     display: flex;
     justify-content: space-between;
     .airoport{
@@ -161,7 +161,7 @@ export default {
 
     }
 }
-.flighd_cart__main__header__way__points{
+.flight_cart__main__header__way__points{
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -188,21 +188,21 @@ export default {
     
   }
 }
-.flighd_cart__main__header__way__points__name{
+.flight_cart__main__header__way__points__name{
   color: $orange;
   font-size: 12px
 }
 
-.flighd_cart__secondary{
+.flight_cart__secondary{
 
 }
 
-.flighd_cart__price{
+.flight_cart__price{
   font-family: "Arial", sans-serif;
   font-size: 24px;
   text-align: center;
 }
-.flighd_cart__btn {
+.flight_cart__btn {
     color: #fff;
     background: $green;
     border-radius: 4px;
@@ -237,14 +237,14 @@ export default {
   }
 }
 
-.flighd_cart__secondary__footer {
+.flight_cart__secondary__footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 10px;
 }
 
-.flighd_cart__secondary__footer__btn {
+.flight_cart__secondary__footer__btn {
     font-weight: 600;
     font-size: 14px;
     color: $secondaru_btn_text_color;
@@ -254,11 +254,11 @@ export default {
     line-height: 1;
 }
 
-.flighd_cart__secondary__footer__info{
+.flight_cart__secondary__footer__info{
     color: $black;
   font-size: 12px;
 }
-.flighd_cart__info_title {
+.flight_cart__info_title {
     font-size: 12px;
     color: $gray;
     text-align: center;
