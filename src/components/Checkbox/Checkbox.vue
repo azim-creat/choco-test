@@ -1,7 +1,7 @@
 <template>
   <label class="checkbox_item">
     {{title}}
-    <input type="checkbox" checked="checked" />
+    <input type="checkbox" :checked="checked" @change="changeIn($event.target.checked)"/>
     <span class="checkmark"></span>
   </label>
 </template>
@@ -11,8 +11,16 @@ export default {
   name: "Checkbox",
   props:{
     title: String,
+    checked: Boolean,
+    checkbox_key: String,
+    change_callback: Function,
   },
-  methods: {},
+  methods: {
+    changeIn(state){
+      this.change_callback(this.checkbox_key, state)
+      console.log(state)
+    }
+  },
 };
 </script>
 
@@ -65,7 +73,7 @@ export default {
   display: block;
   left: 4px;
   top: 0px;
-  width: 3px;
+  width: 2px;
   height: 6px;
   border: solid $gray;
   border-width: 0 3px 3px 0;
@@ -87,7 +95,7 @@ export default {
 .checkbox_item .checkmark:after {
   left: 4px;
   top: 0px;
-  width: 3px;
+  width: 2px;
   height: 6px;
   border: solid white ;
   border-width: 0 3px 3px 0;

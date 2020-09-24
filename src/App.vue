@@ -6,11 +6,15 @@
       <aside id="menu" class="side-menu">
         <FilterList
           title="Опции тарифа"
+          filter_key="options"
           :list="options"
+          :default_checked="false"
         />
         <FilterList
           title="Авиакомпании"
+          filter_key="airlines"
           :list="airlines"
+          :default_checked="true"
         />
         
       </aside>
@@ -21,6 +25,7 @@
         />
       </main>
     </div>
+
     <router-view />
   </div>
 </template>
