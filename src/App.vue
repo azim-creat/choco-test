@@ -1,190 +1,171 @@
 <template>
   <div id="app">
     <Header />
-    <router-link to="/HellowWord">HellowWord</router-link>
+    <!-- <MenuToggler/> -->
+    <div class="container">
+      <aside id="menu" class="side-menu">
+        <FilterList
+          :key="randKey1"
+          title="Опции тарифа"
+          filter_key="options"
+          :list="options"
+          :default_checked="false"
+        />
+        <FilterList
+          :key="randKey2"
+          title="Авиакомпании"
+          filter_key="airlines"
+          :list="airlines"
+          :default_checked="true"
+        />
+           <div class="link_btn " @click="clenFiltres">Сбросить все фильтры</div>
+      </aside>
+
+      <main>
+        <FlightCard
+          v-for="(flight, flight_index) in flights" :key="flight_index"
+          :flight="flight"
+        />
+      </main>
+    </div>
+
     <router-view />
-    <button>hh </button>
+    
   </div>
 </template>
 
 <script>
 import Header from "./components/Header.vue";
+import FilterList from "./components/Cards/FilterList.vue";
+import FlightCard from "./components/Cards/FlightCard.vue";
+// import MenuToggler from "./components/Buttons/MenuToggler.vue";
 import { mapGetters } from "vuex";
+
 
 export default {
   name: "App",
   components: {
     Header,
+    FilterList,
+    FlightCard,
   },
   computed: {
-    ...mapGetters(["count"]),
+    ...mapGetters(["airlines", "flights", "options"]),
+  },
+  data(){
+    return {
+      randKey1: 0,
+      randKey2: 1,
+    }
+  },
+  methods:{
+    clenFiltres(){
+      this.randKey1++
+      this.randKey2++
+    }
+  },
+  mounted() {
+    
+    import("./results.js").then(module => {
+      this.$store.dispatch('INIT_FLIGHTS', module.default.flights)
+      this.$store.dispatch('INIT_AIRLINERS', module.default.airlines)
+    })
+
+    
   },
 };
 </script>
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+@import url("./assets/css/reset.css");
 
-body * {
-  animation: none;
-  animation-delay: 0;
-  animation-direction: normal;
-  animation-duration: 0;
-  animation-fill-mode: none;
-  animation-iteration-count: 1;
-  animation-name: none;
-  animation-play-state: running;
-  animation-timing-function: ease;
-  backface-visibility: visible;
-  background: 0;
-  background-attachment: scroll;
-  background-clip: border-box;
-  background-color: transparent;
-  background-image: none;
-  background-origin: padding-box;
-  background-position: 0 0;
-  background-position-x: 0;
-  background-position-y: 0;
-  background-repeat: repeat;
-  background-size: auto auto;
-  border: 0;
-  border-style: none;
-  border-width: medium;
-  border-color: inherit;
-  border-bottom: 0;
-  border-bottom-color: inherit;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-style: none;
-  border-bottom-width: medium;
-  border-collapse: separate;
-  border-image: none;
-  border-left: 0;
-  border-left-color: inherit;
-  border-left-style: none;
-  border-left-width: medium;
-  border-radius: 0;
-  border-right: 0;
-  border-right-color: inherit;
-  border-right-style: none;
-  border-right-width: medium;
-  border-spacing: 0;
-  border-top: 0;
-  border-top-color: inherit;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-top-style: none;
-  border-top-width: medium;
-  bottom: auto;
-  box-shadow: none;
-  box-sizing: content-box;
-  caption-side: top;
-  clear: none;
-  clip: auto;
-  color: inherit;
-  columns: auto;
-  column-count: auto;
-  column-fill: balance;
-  column-gap: normal;
-  column-rule: medium none currentColor;
-  column-rule-color: currentColor;
-  column-rule-style: none;
-  column-rule-width: none;
-  column-span: 1;
-  column-width: auto;
-  content: normal;
-  counter-increment: none;
-  counter-reset: none;
-  cursor: auto;
-  direction: ltr;
-  display: inline;
-  empty-cells: show;
-  float: none;
-  font: normal;
-  font-family: inherit;
-  font-size: medium;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: normal;
-  height: auto;
-  hyphens: none;
-  left: auto;
-  letter-spacing: normal;
-  line-height: normal;
-  list-style: none;
-  list-style-image: none;
-  list-style-position: outside;
-  list-style-type: disc;
-  margin: 0;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  max-height: none;
-  max-width: none;
-  min-height: 0;
-  min-width: 0;
-  opacity: 1;
-  orphans: 0;
-  outline: 0;
-  outline-color: invert;
-  outline-style: none;
-  outline-width: medium;
-  overflow: visible;
-  overflow-x: visible;
-  overflow-y: visible;
-  padding: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  page-break-after: auto;
-  page-break-before: auto;
-  page-break-inside: auto;
-  perspective: none;
-  perspective-origin: 50% 50%;
-  position: static;
-  /* May need to alter quotes for different locales (e.g fr) */
-  quotes: "\201C""\201D""\2018""\2019";
-  right: auto;
-  tab-size: 8;
-  table-layout: auto;
-  text-align: inherit;
-  text-align-last: auto;
-  text-decoration: none;
-  text-decoration-color: inherit;
-  text-decoration-line: none;
-  text-decoration-style: solid;
-  text-indent: 0;
-  text-shadow: none;
-  text-transform: none;
-  top: auto;
-  transform: none;
-  transform-style: flat;
-  transition: none;
-  transition-delay: 0s;
-  transition-duration: 0s;
-  transition-property: none;
-  transition-timing-function: ease;
-  unicode-bidi: normal;
-  vertical-align: baseline;
-  visibility: visible;
-  white-space: normal;
-  widows: 0;
-  width: auto;
-  word-spacing: normal;
-  z-index: auto;
-  /* basic modern patch */
-  all: initial;
-  all: unset;
+
+body {
+  background: $bg;
+  width: calc(100vw - (100vw - 100%));
+  overflow-x: hidden;
+
 }
+.container {
+  width: calc(100% - 4rem);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 1rem;
 
-#app {
-  all: initial;
-  * {
-    all: unset;
-    font-family: "Open Sans", sans-serif;
+  @media (min-width: 1140px) {
+    width: 1140px;
+    padding: 0;
   }
 }
 
+@media (max-width: 1140px) {
+  .container {
+    width: calc(100% - 2rem);
+    padding: 0 1rem;
+  }
+}
+
+
+
+main {
+  flex-grow: 3;
+  flex-basis: 35rem;
+}
+
+aside {
+  flex-grow: 1;
+  flex-basis: 10rem;
+
+}
+aside#menu:after {
+    display: block;
+    content: "";
+    position: absolute;
+    width: 100vw;
+    height: 150vh;
+    background: whitesmoke;
+    z-index: -1;
+    top: 10px;
+}
+@media (min-width: 1140px) {
+  aside#menu:after {
+    display: none
+  }
+    
+  }
+
+
+.side-menu {
+  position: fixed;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  left: -200vw;
+  visiblity: hidden;
+  transition: left 0.5s, visibility 1s;
+  .link_btn{
+    margin-left: 10px;
+  }
+  
+
+  &.open {
+    visibility: visible;
+    left: 0;
+    max-height: calc(100vh - 56px);
+    max-width: calc(100vw - (100vw - 100%));
+    overflow-y: scroll;
+  }
+
+  @media (min-width: 1140px) {
+    position: static;
+    width: auto;
+    top: unset;
+    left: unset;
+    visibility: visible;
+    margin-right: 20px;
+    
+  }
+}
 </style>

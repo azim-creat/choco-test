@@ -1,23 +1,56 @@
 <template>
   <div class="header">
-    <h1> Header </h1>
+    <div class="container header__content">
+      <router-link to="/">
+        <img :src="require('@/assets/logo.png')" alt="" class="header__logo">
+      </router-link>
+     <Menutoggler/>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Header',
-  props: {
-    // msg: String
-  }
-}
-</script>
+  name: "Header",
+  component:{
+  },
+  methods: {
+    toggleMenu() {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+      
+      const menu = document.getElementById("menu");
+      const button = document.getElementById("nav-icon2");
+      menu.classList.toggle("open");
+      button.classList.toggle("open");
+
+    },
+  },
+  beforeCreate: function () {
+    this.$options.components.Menutoggler = require('./Buttons/Menutoggler').default
+  },
+  mounted() {},
+};
+</script>1
 
 
 <style lang="scss">
-.header{
-  &_logo{
 
+.header {
+  background: #fff;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  @include shadow;
+
+  &__content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo{
+    height: 40px;
   }
 }
 

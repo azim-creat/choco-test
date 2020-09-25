@@ -1,4 +1,4 @@
-{
+export default  {
   "airlines": {
     "KC": "Air Astana",
     "HY": "Uzbekistan Airways",
